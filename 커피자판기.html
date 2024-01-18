@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let coffee_price = 300;
+      let amount = 10;
+      let input = 0;
+      let change = 0;
+
+      while (true) {
+        //
+        if (amount == 0) {
+          alert("커피가 다 떨어졌습니다. 판매를 중지합니다.");
+          break;
+        }
+
+        input = parseInt(prompt(`돈을 넣어주세요(남은커피 ${amount})`));
+
+        if (input == coffee_price) {
+          alert("커피를 줍니다.");
+          amount--;
+        } else if (input > coffee_price) {
+          change = input - coffee_price;
+          alert(`거스름돈 ${change}원과 커피를 줍니다. `);
+          amount--;
+        } else {
+          alert("돈이 부족합니다.");
+        }
+      }
+    </script>
+  </body>
+</html>
