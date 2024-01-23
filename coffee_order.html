@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coffee Order</title>
+    <link rel="stylesheet" href="./coffee_order.css" />
+  </head>
+  <body>
+    <form action="">
+      <h1>Coffee Order</h1>
+      <ul class="menu">
+        <li>
+          <img src="./img/espresso.jpg" alt="에스프레소" />
+          <p>에스프레소</p>
+          <p>4000원</p>
+        </li>
+        <li>
+          <img src="./img/americano.jpg" alt="아메리카노" />
+          <p>아메리카노</p>
+          <p>4500원</p>
+        </li>
+      </ul>
+      <ul class="menu">
+        <li>
+          <img src="./img/latte.jpg" alt="카페라떼" />
+          <p>카페라떼</p>
+          <p>5000원</p>
+        </li>
+        <li>
+          <img src="./img/mocha.jpg" alt="카페모카" />
+          <p>카페모카</p>
+          <p>5500원</p>
+        </li>
+      </ul>
+      <div class="tem">
+        <input type="radio" name="tem" id="hot" />
+        <label for="hot">HOT</label>
+        <input type="radio" name="tem" id="iced" />
+        <label for="iced">ICED</label>
+      </div>
+      <div class="size">
+        <input type="radio" name="size" id="short" />
+        <label for="short">Short 237ml -500원</label>
+        <input type="radio" name="size" id="tall" />
+        <label for="tall">Tall 355ml</label>
+        <input type="radio" name="size" id="grande" />
+        <label for="grande">Grande 473ml +500원</label>
+      </div>
+    </form>
+
+    <script>
+      // let coffee_price = 3000;
+      // let amount = 10;
+      // let input = 0;
+      // let change = 0;
+
+      // while (true) {
+      //   //
+      //   if (amount == 0) {
+      //     alert("커피가 다 떨어졌습니다. 판매를 중지합니다.");
+      //     break;
+      //   }
+
+      //   input = parseInt(prompt(`돈을 넣어주세요(남은커피 ${amount})`));
+
+      //   if (input == coffee_price) {
+      //     alert("커피를 줍니다.");
+      //     amount--;
+      //   } else if (input > coffee_price) {
+      //     change = input - coffee_price;
+      //     alert(`거스름돈 ${change}원과 커피를 줍니다. `);
+      //     amount--;
+      //   } else {
+      //     alert("돈이 부족합니다.");
+      //   }
+      // }
+    </script>
+  </body>
+</html>
