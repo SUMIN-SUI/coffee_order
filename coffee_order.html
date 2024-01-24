@@ -5,51 +5,113 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Coffee Order</title>
     <link rel="stylesheet" href="./coffee_order.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <form action="">
-      <h1>Coffee Order</h1>
+    <form class="order-form">
+      <h1>Coffee Menu</h1>
       <ul class="menu">
-        <li>
+        <li class="menu_list">
           <img src="./img/espresso.jpg" alt="에스프레소" />
-          <p>에스프레소</p>
-          <p>4000원</p>
+          <div>
+            <p>에스프레소</p>
+            <p>4,000원</p>
+          </div>
         </li>
-        <li>
+        <li class="menu_list">
           <img src="./img/americano.jpg" alt="아메리카노" />
-          <p>아메리카노</p>
-          <p>4500원</p>
+          <div>
+            <p>아메리카노</p>
+            <p>4,500원</p>
+          </div>
         </li>
-      </ul>
-      <ul class="menu">
-        <li>
+        <li class="menu_list">
           <img src="./img/latte.jpg" alt="카페라떼" />
-          <p>카페라떼</p>
-          <p>5000원</p>
+          <div>
+            <p>카페라떼</p>
+            <p>5,000원</p>
+          </div>
         </li>
-        <li>
+        <li class="menu_list">
           <img src="./img/mocha.jpg" alt="카페모카" />
-          <p>카페모카</p>
-          <p>5500원</p>
+          <div>
+            <p>카페모카</p>
+            <p>5,500원</p>
+          </div>
         </li>
       </ul>
-      <div class="tem">
-        <input type="radio" name="tem" id="hot" />
-        <label for="hot">HOT</label>
-        <input type="radio" name="tem" id="iced" />
-        <label for="iced">ICED</label>
-      </div>
-      <div class="size">
-        <input type="radio" name="size" id="short" />
-        <label for="short">Short 237ml -500원</label>
-        <input type="radio" name="size" id="tall" />
-        <label for="tall">Tall 355ml</label>
-        <input type="radio" name="size" id="grande" />
-        <label for="grande">Grande 473ml +500원</label>
-      </div>
+
+      <button class="orderBtn">주문하기</button>
     </form>
 
     <script>
+      const orderBtn = document.querySelector(".orderBtn");
+
+      const espresso = {
+        name: "에스프레소",
+        price: 4000,
+        amount: 10,
+      };
+
+      const americano = {
+        name: "아메리카노",
+        price: 4500,
+        amount: 10,
+      };
+
+      const latte = {
+        name: "카페라떼",
+        price: 5000,
+        amount: 10,
+      };
+
+      const mocha = {
+        name: "카페모카",
+        price: 5500,
+        amount: 10,
+      };
+
+      let change = 0;
+
+      function order() {
+        let answer = confirm("주문하시겠습니까?");
+        if (answer) {
+          let order = prompt("메뉴를 작성해주세요");
+          select(order);
+        } else {
+          alert("주문이 취소되었습니다.");
+          return;
+        }
+      }
+
+      function select(menu) {
+        switch (menu) {
+          case "에스프레소":
+            let inputMoney = parseInt(
+              prompt(`돈을 입력해주세요 (남은커피 :${espresso.amount})`)
+            );
+            if (inputMoney > espresso.price) {
+              change = inputMoney - espresso.price;
+              alert(`거스름돈 ${change}입니다`);
+              alert(`${menu} 주문이 완료되었습니다`);
+            } else if (inputMoney < espresso.price) {
+              alert("돈이 부족합니다.");
+              order();
+            } else {
+              alert(`${menu} 주문이 완료되었습니다`);
+            }
+            espresso.amount--;
+            console.log(espresso.amount);
+            break;
+        }
+      }
+
+      orderBtn.addEventListener("click", order);
       // let coffee_price = 3000;
       // let amount = 10;
       // let input = 0;
