@@ -22,18 +22,18 @@ const mocha = {
   amount: 10,
 };
 
-const orderBtn = document.querySelector(".orderBtn");
-
-function order(event) {
+function order() {
   let answer = confirm("주문하시겠습니까?");
   if (answer) {
     let order = prompt("메뉴를 작성해주세요");
-    //order가 빈칸일때
+    if (order === null) {
+      alert("주문이 취소되었습니다.");
+    } else if (order.trim() === "") {
+      alert("메뉴를 입력해주세요.");
+    }
     select(order);
-    event.preventDefault();
   } else {
     alert("주문이 취소되었습니다.");
-    return;
   }
 }
 
@@ -43,17 +43,20 @@ function orderProcess(menu) {
   let inputMoney = parseInt(
     prompt(`돈을 입력해주세요 (남은커피 :${menu.amount})`)
   );
-  if (inputMoney > menu.price) {
-    change = inputMoney - menu.price;
+
+  const menuC = { ...menu };
+
+  if (inputMoney > menuC.price) {
+    change = inputMoney - menuC.price;
     alert(`거스름돈 ${change}입니다`);
-    alert(`${menu.name} 주문이 완료되었습니다`);
-    menu.amount--;
-  } else if (inputMoney < menu.price) {
+    alert(`${menuC.name} 주문이 완료되었습니다`);
+    menuC.amount--;
+  } else if (inputMoney < menuC.price) {
     alert("돈이 부족합니다.");
     order();
-  } else if (money === menu.price) {
-    alert(`${menu.name} 주문이 완료되었습니다`);
-    menu.amount--;
+  } else if (inputMoney === menuC.price) {
+    alert(`${menuC.name} 주문이 완료되었습니다`);
+    menuC.amount--;
   } else {
     alert("주문이 취소되었습니다.");
   }
@@ -73,33 +76,7 @@ function select(menu) {
     case "카페모카":
       orderProcess(mocha);
       break;
+    default:
+      alert("없는 메뉴입니다.");
   }
 }
-
-orderBtn.addEventListener("click", order);
-
-// let coffee_price = 3000;
-// let amount = 10;
-// let input = 0;
-// let change = 0;
-
-// while (true) {
-//   //
-//   if (amount == 0) {
-//     alert("커피가 다 떨어졌습니다. 판매를 중지합니다.");
-//     break;
-//   }
-
-//   input = parseInt(prompt(`돈을 넣어주세요(남은커피 ${amount})`));
-
-//   if (input == coffee_price) {
-//     alert("커피를 줍니다.");
-//     amount--;
-//   } else if (input > coffee_price) {
-//     change = input - coffee_price;
-//     alert(`거스름돈 ${change}원과 커피를 줍니다. `);
-//     amount--;
-//   } else {
-//     alert("돈이 부족합니다.");
-//   }
-// }
